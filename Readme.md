@@ -1,8 +1,16 @@
-[!logo](/icon128.png)
+![banner](images/banner.png)
+
+
+<img src="images/icon128.png" alt="logo" width="64" />
 
 # Google Maps Button in Google Search
 
+
 This Chrome extension adds a **"Maps"** button back into the top navigation bar of Google Search results, just like it used to appear alongside "All", "Images", "News", and "Videos".
+
+![screen1](images/screen1.png)
+![screen2](images/screen2.png)
+
 
 ## 🔧 Features
 
