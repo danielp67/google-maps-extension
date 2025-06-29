@@ -1,4 +1,4 @@
-[!logo](blob/main/icon128.png)
+[!logo](/icon128.png)
 
 # Google Maps Button in Google Search
 
