@@ -1,4 +1,4 @@
-[("/icon128.png")](https://github.com/bfred-it/google-maps-button/raw/master/icon128.png)
+[!logo](blob/main/icon128.png)
 
 # Google Maps Button in Google Search
 
