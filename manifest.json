@@ -3,7 +3,7 @@
   "name": "Add Google Maps Button",
   "version": "1.0",
     "description": "Adds a Maps button to the Google search bar.",
-      "permissions": ["scripting"],
+      "permissions": [],
 
   "icons": {
     "128": "icon128.png"

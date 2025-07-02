@@ -42,7 +42,6 @@ maps-button-extension/
 
 This extension requests **minimal permissions**:
 
-- `"scripting"`: Required to inject a content script into the Google Search page
 - `"*://www.google.com/*"` match: Needed to run the script only on Google Search pages
 
 ✅ **No personal data is collected.**
