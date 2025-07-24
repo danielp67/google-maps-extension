@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "添加谷歌地圖按鈕",
+    "description": "擴展名稱"
+  },
+  "appDesc": {
+    "message": "在谷歌搜索欄中添加地圖按鈕。",
+    "description": "擴展描述"
+  }
+}

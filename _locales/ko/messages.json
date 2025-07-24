@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Google 지도 버튼 추가",
+    "description": "확장 프로그램 이름"
+  },
+  "appDesc": {
+    "message": "Google 검색 창에 지도 버튼을 추가합니다.",
+    "description": "확장 프로그램 설명"
+  }
+}

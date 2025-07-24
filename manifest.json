@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Add Google Maps Button",
+  "name": "__MSG_appName__",
   "version": "1.0",
-    "description": "Adds a Maps button to the Google search bar.",
-      "permissions": [],
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "permissions": [],
 
   "icons": {
     "128": "icon128.png"

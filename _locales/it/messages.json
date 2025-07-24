@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Aggiungi pulsante Google Maps",
+    "description": "Il nome dell'estensione"
+  },
+  "appDesc": {
+    "message": "Aggiunge un pulsante Maps alla barra di ricerca di Google.",
+    "description": "La descrizione dell'estensione"
+  }
+}

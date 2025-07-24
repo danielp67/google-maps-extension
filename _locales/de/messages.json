@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Google Maps-Schaltfläche hinzufügen",
+    "description": "Der Name der Erweiterung"
+  },
+  "appDesc": {
+    "message": "Fügt der Google-Suchleiste eine Maps-Schaltfläche hinzu.",
+    "description": "Die Beschreibung der Erweiterung"
+  }
+}
