@@ -1,46 +1,69 @@
+
+function createGoogleTabSpan(labelText) {
+  const span = document.createElement('span');
+  span.innerText = labelText;
+  Object.assign(span.style, {
+    borderBottomColor: 'transparent',
+    color: '#80868b',
+    fontWeight: '500',
+    display: 'inline-block',
+    whiteSpace: 'nowrap',
+    width: 'fit-content',
+    fontFamily: 'Google Sans, Arial, sans-serif',
+    fontSize: '14px',
+    lineHeight: '20px',
+    borderBottom: '3px solid transparent',
+    paddingBottom: '8px'
+  });
+  return span;
+}
+function createGoogleTabDiv() {
+  const div = document.createElement('div');
+  Object.assign(div.style, {
+    display: "flex",
+    minHeight: "48px",
+    padding: "0 12px",
+    columnGap: "2px",
+    alignItems: "end"
+  });
+  return div;
+}
+
 function addMapsButton() {
   const navBar = document.querySelector('div[role="navigation"]');
   if (!navBar) return;
 
-  // Ne pas dupliquer le bouton
+  // Évite les doublons
   if (document.querySelector('#maps-button')) return;
 
-  // Récupère la requête de recherche
-  const query = new URLSearchParams(window.location.search).get('q') || '';
-  const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(query)}`;
+  const videosBtn = Array.from(navBar.querySelectorAll('a')).find(a => a.innerText.toLowerCase().includes('vidéo'));
 
-  // Crée le <div role="listitem">
-  const listItem = document.createElement('div');
-  listItem.setAttribute('role', 'listitem');
-  listItem.setAttribute('data-hveid', 'EXT'); // facultatif
+  if (videosBtn) {
+    const mapsBtn = videosBtn.cloneNode(true);
+    mapsBtn.id = "maps-button";
 
-  // Crée le <a>
-  const link = document.createElement('a');
-  link.id = 'maps-button';
-  link.href = mapsUrl;
-  link.className = 'nPDzT T3FoJb';
-  link.setAttribute('role', 'link');
-  link.style.color = '#9aa0a6';
+    // Clear the anchor text
+    mapsBtn.innerText = "";
 
-  // Crée le texte "Maps"
-  const label = document.createElement('div');
-  label.className = 'YmvwI';
-  label.textContent = 'Maps';
+    // Create a div inside the anchor
+    const innerSpan = createGoogleTabSpan('Maps');
+    const innerDiv = createGoogleTabDiv();
+    innerDiv.appendChild(innerSpan);
+    mapsBtn.appendChild(innerDiv);
 
-  // Assemble
-  link.appendChild(label);
-  listItem.appendChild(link);
+    // Met à jour le lien de redirection
+    const query = new URLSearchParams(window.location.search).get('q') || '';
+    mapsBtn.href = `https://www.google.com/maps/search/${encodeURIComponent(query)}`;
 
-  // Trouver le bon emplacement après "Vidéos"
-  const navItems = Array.from(navBar.querySelectorAll('div[role="listitem"]'));
-  const videoItem = navItems.find(item =>
-    item.innerText.toLowerCase().includes('vidéo') || item.innerText.toLowerCase().includes('video')
-  );
+    // Clone the parent div (which has role="listitem")
+    const parentDiv = videosBtn.parentNode;
+    const newParentDiv = parentDiv.cloneNode(false); // shallow clone without children
 
-  if (videoItem) {
-    videoItem.insertAdjacentElement('afterend', listItem);
-  } else {
-    navBar.appendChild(listItem); // fallback à la fin
+    // Add the Maps button to the new div
+    newParentDiv.appendChild(mapsBtn);
+
+    // Insert the new div after the original div
+    parentDiv.parentNode.insertBefore(newParentDiv, parentDiv.nextSibling);
   }
 }
 
