@@ -31,41 +31,31 @@ function createGoogleTabDiv() {
 
 function addMapsButton() {
   const navBar = document.querySelector('div[role="navigation"]');
-  if (!navBar) return;
+  if (!navBar || document.querySelector('#maps-button')) return;
 
-  // Évite les doublons
-  if (document.querySelector('#maps-button')) return;
+  // Essayer d'insérer après le premier lien de navigation
+  const firstLink = navBar.querySelector('a');
+  if (!firstLink) return;
 
-  const videosBtn = Array.from(navBar.querySelectorAll('a')).find(a => a.innerText.toLowerCase().includes('vidéo'));
+  const mapsBtn = firstLink.cloneNode(true);
+  mapsBtn.id = "maps-button";
+  mapsBtn.innerText = "";
 
-  if (videosBtn) {
-    const mapsBtn = videosBtn.cloneNode(true);
-    mapsBtn.id = "maps-button";
+  const innerSpan = createGoogleTabSpan('Maps');
+  const innerDiv = createGoogleTabDiv();
+  innerDiv.appendChild(innerSpan);
+  mapsBtn.appendChild(innerDiv);
 
-    // Clear the anchor text
-    mapsBtn.innerText = "";
+  const query = new URLSearchParams(window.location.search).get('q') || '';
+  mapsBtn.href = `https://www.google.com/maps/search/${encodeURIComponent(query)}`;
 
-    // Create a div inside the anchor
-    const innerSpan = createGoogleTabSpan('Maps');
-    const innerDiv = createGoogleTabDiv();
-    innerDiv.appendChild(innerSpan);
-    mapsBtn.appendChild(innerDiv);
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('role', 'listitem');
+  wrapper.appendChild(mapsBtn);
 
-    // Met à jour le lien de redirection
-    const query = new URLSearchParams(window.location.search).get('q') || '';
-    mapsBtn.href = `https://www.google.com/maps/search/${encodeURIComponent(query)}`;
-
-    // Clone the parent div (which has role="listitem")
-    const parentDiv = videosBtn.parentNode;
-    const newParentDiv = parentDiv.cloneNode(false); // shallow clone without children
-
-    // Add the Maps button to the new div
-    newParentDiv.appendChild(mapsBtn);
-
-    // Insert the new div after the original div
-    parentDiv.parentNode.insertBefore(newParentDiv, parentDiv.nextSibling);
-  }
+  firstLink.parentNode.parentNode.insertBefore(wrapper, firstLink.parentNode.nextSibling);
 }
+
 
 // Injection dynamique via MutationObserver
 const observer = new MutationObserver(() => {
